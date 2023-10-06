@@ -188,3 +188,41 @@ if(uploadImage){
     })
 }
 // End Upload Image
+
+//Sort
+const sort = document.querySelector("[sort");
+if(sort){
+    let url = new URL(window.location.href);
+
+    const sortSelect = sort.querySelector("[sort-select]");
+
+    sortSelect.addEventListener("change",(e)=>{
+        const value = e.target.value;
+        const [sortKey,sortValue] = value.split("-");
+        console.log(sortKey);
+        console.log(sortValue);
+        url.searchParams.set("sortKey",sortKey)
+        url.searchParams.set("sortValue",sortValue);
+        
+        window.location.href =  url.href
+    })
+    //Xoa sap xep
+    const sortClear = sort.querySelector("[sort-clear]");
+    console.log(sortClear);
+    sortClear.addEventListener("click",()=>{
+        url.searchParams.delete("sortKey")
+        url.searchParams.delete("sortValue");
+
+        window.location.href =  url.href
+    })
+
+    //Hien thi lua chon da chon
+    const sortKey = url.searchParams.get("sortKey");
+    const sortValue = url.searchParams.get("sortValue");
+    if(sortKey && sortValue){
+        const stringOption = `${sortKey}-${sortValue}`;
+        const optionDefault = sortSelect.querySelector(`option[value='${stringOption}']`);
+        optionDefault.setAttribute("selected", true);
+    }
+}
+//End Sort
