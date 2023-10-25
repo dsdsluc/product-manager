@@ -1,27 +1,28 @@
 extends ../../layouts/default.pug
 
 block main
-    if (productItem.title)
-        h1(class="mb-4") #{productItem.title}
-    if (productItem.price) 
-        div(class="mb-4") Giá: <b>#{productItem.price}$</b>
-    if (productItem.discountPercentage)
-        div(class="mb-4") Giảm giá: <b>#{productItem.discountPercentage}% /b>
-    if (productItem.stock)
-        div(class="mb-4") Còn lại: <b>#{productItem.stock}</b>
-    if (productItem.thumbnail) 
-        div(class="mb-4")
-            img(
-            src=productItem.thumbnail style="width: 100px"
-            )
-    if (productItem.status)
-        div(class="mb-4")
-            span Trạng thái:
-            if (productItem.status == "active")
-                span(class="badge badge-success") Hoạt động
-            else
-            span(class="badge badge-danger") Dừng hoạt động
-    if (productItem.position)
-        div(class="mb-4") Vị trí: <b>#{productItem.position}</b>
-    if (productItem.description)
-        div(class="mb-4") #{productItem.description}
+    if(role.permissions.includes("products_view"))
+        if (productItem.title)
+            h1(class="mb-4") #{productItem.title}
+        if (productItem.price) 
+            div(class="mb-4") Giá: <b>#{productItem.price}$</b>
+        if (productItem.discountPercentage)
+            div(class="mb-4") Giảm giá: <b>#{productItem.discountPercentage}% /b>
+        if (productItem.stock)
+            div(class="mb-4") Còn lại: <b>#{productItem.stock}</b>
+        if (productItem.thumbnail) 
+            div(class="mb-4")
+                img(
+                src=productItem.thumbnail style="width: 100px"
+                )
+        if (productItem.status)
+            div(class="mb-4")
+                span Trạng thái:
+                if (productItem.status == "active")
+                    span(class="badge badge-success") Hoạt động
+                else
+                span(class="badge badge-danger") Dừng hoạt động
+        if (productItem.position)
+            div(class="mb-4") Vị trí: <b>#{productItem.position}</b>
+        if (productItem.description)
+            div(class="mb-4") !{productItem.description}

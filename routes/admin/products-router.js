@@ -22,7 +22,8 @@ routes.delete('/delete/:id', controller.deleteItem);
 
 routes.get('/create', controller.create);
 
-routes.post('/create', upload.single('thumbnail'),
+routes.post('/create', 
+upload.single('thumbnail'),
 uploadCloud.upload,
 validates.createPost,controller.createPost);
 
